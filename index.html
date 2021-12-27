@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>word counter</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>word counter</h1>
+      <p class="subtitle">
+        count live charactera, words, sentences and paragraph with this cool
+        website
+      </p>
+      <textarea id="textArea" rows="15"></textarea>
+      <div class="count">
+        <div class="box">
+          <h5 id="characters">0</h5>
+          <p>characters</p>
+        </div>
+        <div class="box">
+          <h5 id="words">0</h5>
+          <p>words</p>
+        </div>
+
+        <div class="box">
+          <h5 id="sentences">0</h5>
+          <p>sentences</p>
+        </div>
+        <div class="box">
+          <h5 id="paragraph">0</h5>
+          <p>paragraph</p>
+        </div>
+      </div>
+      <div class="credit"><h3>created by pritom</h3></div>
+    </div>
+
+    <script>
+      let textArea = document.getElementById("textArea");
+      let character = document.getElementById("characters");
+      let words = document.getElementById("words");
+      let sentense = document.getElementById("sentences");
+      let paragraph = document.getElementById("paragraph");
+
+      textArea.addEventListener("input", () => {
+        character.textContent = textArea.value.length;
+        let text = textArea.value.trim();
+
+        words.textContent = text.split(/\s+/).filter((el) => el).length;
+
+        sentense.textContent = text.split(/[.|?|!]+/g).length - 1;
+
+        paragraph.textContent = text.replace(/\n$/gm, "").split(/\n/).length;
+      });
+    </script>
+  </body>
+</html>
